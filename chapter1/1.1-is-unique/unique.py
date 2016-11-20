@@ -17,7 +17,18 @@ def check_unique(string):
 		next_char = char
 	return True
 
+
+def check_unique_bit(string):
+	check = 0
+	for char in string:
+		aux = ord(char) - ord('a')
+		if check & 1 << aux > 0:
+			return False
+		check = check | 1 << aux
+	return True
+
 data = read_json("sample.json")
 for i in data.values():
 	print(check_unique(i))
+	print(check_unique_bit(i))
 
